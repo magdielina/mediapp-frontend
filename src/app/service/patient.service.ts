@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Patient } from '../model/patient';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,6 @@ export class PatientService {
   constructor(private http: HttpClient) { }
 
   findAll() {
-    return this.http.get(this.url);
+    return this.http.get<Patient[]>(this.url);
   }
 }
