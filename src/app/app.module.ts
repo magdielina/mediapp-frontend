@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientComponent } from './pages/patient/patient.component';
 import { MedicComponent } from './pages/medic/medic.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MaterialModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
