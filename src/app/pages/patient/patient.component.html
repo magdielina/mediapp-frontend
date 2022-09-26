@@ -1,5 +1,6 @@
+<router-outlet></router-outlet>
 
- <mat-form-field appearance="standard">
+<mat-form-field appearance="standard">
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
 </mat-form-field>
@@ -54,4 +55,8 @@
       </tr>
     </table> 
     <mat-paginator [pageSizeOptions]="[5,10,25,50,100]" aria-label="Select page of patients"></mat-paginator>
-</div>
+
+    <button mat-fab color="accent" style="float: right" >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>

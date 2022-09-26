@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 # Images
-.jpg
-.png
+*.jpg
+*.png
