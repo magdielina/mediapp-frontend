@@ -1,1 +1,42 @@
-<p>patient-edit works!</p>
+<form class="example-container" [formGroup]="form" (submit)="operate()">
+
+    <div [hidden]="true">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="ID" required formControlName="patientId">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" required minlength="3" formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" required minlength="3" formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="DNI" required minlength="3" formControlName="dni">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Address" required minlength="3" formControlName="address">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Phone" required minlength="3" formControlName="phone">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" required minlength="3" formControlName="email">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">
+        <mat-icon>done</mat-icon>
+        <span>Done</span>
+    </button>
+
+    <button type="button" mat-raised-button color="accent" routerLink="/pages/patient" >
+        <mat-icon>cancel</mat-icon>
+        <span>Cancel</span>
+    </button>
+</form>
