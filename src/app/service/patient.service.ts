@@ -16,7 +16,15 @@ export class PatientService {
     return this.http.get<Patient[]>(this.url);
   }
 
+  findById(id: number) {
+    return this.http.get<Patient>(`${this.url}/${id}`);
+  }
+
   save(patient: Patient) {
     return this.http.post(this.url, patient);
+  }
+
+  update(patient: Patient) {
+    return this.http.put(this.url, patient);
   }
 }
