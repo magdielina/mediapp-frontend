@@ -15,4 +15,8 @@ export class PatientService {
   findAll() {
     return this.http.get<Patient[]>(this.url);
   }
+
+  save(patient: Patient) {
+    return this.http.post(this.url, patient);
+  }
 }
