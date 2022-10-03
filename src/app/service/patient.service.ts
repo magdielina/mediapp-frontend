@@ -11,6 +11,7 @@ export class PatientService {
 
   private url: string = `${environment.HOST}/patients`;
   private patientChange = new Subject<Patient[]>;
+  private messageChange = new Subject<string>;
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +31,10 @@ export class PatientService {
     return this.http.put(this.url, patient);
   }
 
+  delete(id: number) {
+    return this.http.delete<Patient>(`${this.url}/${id}`);
+  }
+
   /***** Getters & Setters *****/
 
   setPatientChange(data: Patient[]){
@@ -40,7 +45,11 @@ export class PatientService {
     return this.patientChange.asObservable();
   }
 
-  delete(id: number) {
-    return this.http.delete<Patient>(`${this.url}/${id}`);
+  setMessageChange(data: string){
+    this.messageChange.next(data);
+  }
+
+  getMessageChange(){
+    return this.messageChange.asObservable();
   }
 }

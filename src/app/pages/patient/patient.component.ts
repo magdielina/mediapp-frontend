@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { switchMap } from 'rxjs';
@@ -19,7 +20,10 @@ export class PatientComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private patientService: PatientService) { }
+  constructor(
+    private patientService: PatientService,
+    private snackBar: MatSnackBar 
+  ) { }
 
   ngOnInit(): void {
     this.patientService.getPatientChange().subscribe(data => {
@@ -28,11 +32,14 @@ export class PatientComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
 
+    this.patientService.getMessageChange().subscribe(data => {
+      this.snackBar.open('Info', data, {duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'});
+    })
+
     this.patientService.findAll().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     });
   }
 
@@ -46,6 +53,7 @@ export class PatientComponent implements OnInit {
     }))
     .subscribe(data => {
       this.patientService.setPatientChange(data);
+      this.patientService.setMessageChange('Patient has been deleted');
     });
   }
 
