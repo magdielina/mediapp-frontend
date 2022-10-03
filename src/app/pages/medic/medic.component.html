@@ -56,7 +56,7 @@
     </table> 
     <mat-paginator [pageSizeOptions]="[5,10,25,50,100]" aria-label="Select page of medics"></mat-paginator>
 
-    <button mat-fab color="accent" style="float: right"  >
+    <button mat-fab color="accent" style="float: right" (click)="openDialog()" >
       <mat-icon>add</mat-icon>
     </button>
   </div>

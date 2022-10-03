@@ -9,14 +9,16 @@ import { MedicComponent } from './pages/medic/medic.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import { PatientEditComponent } from './pages/patient/patient-edit/patient-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MedicDialogComponent } from './pages/medic/medic-dialog/medic-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PatientComponent,
     MedicComponent,
-    PatientEditComponent
+    PatientEditComponent,
+    MedicDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
-
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { switchMap } from 'rxjs';
 import { Medic } from 'src/app/model/medic';
 import { MedicService } from 'src/app/service/medic.service';
+import { MedicDialogComponent } from './medic-dialog/medic-dialog.component';
 
 @Component({
   selector: 'app-medic',
@@ -19,7 +21,8 @@ export class MedicComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private medicService: MedicService
+    private medicService: MedicService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -36,8 +39,11 @@ export class MedicComponent implements OnInit {
     });
   }
 
-  openDialog(medic: Medic){
-
+  openDialog(medic?: Medic){
+    this.dialog.open(MedicDialogComponent, {
+      width: '250px',
+      data: medic
+    });
   }
 
   applyFilter(e: any ) {
