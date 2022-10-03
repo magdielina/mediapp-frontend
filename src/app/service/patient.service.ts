@@ -3,37 +3,42 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Patient } from '../model/patient';
 import { Subject } from 'rxjs';
+import { GenericService } from './generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PatientService {
+export class PatientService extends GenericService<Patient>{
 
-  private url: string = `${environment.HOST}/patients`;
+  // private url: string = `${environment.HOST}/patients`;
   private patientChange = new Subject<Patient[]>;
   private messageChange = new Subject<string>;
 
-  constructor(private http: HttpClient) { }
-
-  findAll() {
-    return this.http.get<Patient[]>(this.url);
+  constructor(protected override http: HttpClient) { 
+    super(http, `${environment.HOST}/patients`);
   }
 
-  findById(id: number) {
-    return this.http.get<Patient>(`${this.url}/${id}`);
-  }
+  // constructor(private http: HttpClient) { }
 
-  save(patient: Patient) {
-    return this.http.post(this.url, patient);
-  }
+  // findAll() {
+  //   return this.http.get<Patient[]>(this.url);
+  // }
 
-  update(patient: Patient) {
-    return this.http.put(this.url, patient);
-  }
+  // findById(id: number) {
+  //   return this.http.get<Patient>(`${this.url}/${id}`);
+  // }
 
-  delete(id: number) {
-    return this.http.delete<Patient>(`${this.url}/${id}`);
-  }
+  // save(patient: Patient) {
+  //   return this.http.post(this.url, patient);
+  // }
+
+  // update(patient: Patient) {
+  //   return this.http.put(this.url, patient);
+  // }
+
+  // delete(id: number) {
+  //   return this.http.delete<Patient>(`${this.url}/${id}`);
+  // }
 
   /***** Getters & Setters *****/
 
