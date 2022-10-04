@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConsultComponent } from './pages/consult/consult.component';
 import { ExamEditComponent } from './pages/exam/exam-edit/exam-edit.component';
 import { ExamComponent } from './pages/exam/exam.component';
 import { MedicComponent } from './pages/medic/medic.component';
@@ -27,7 +28,9 @@ const routes: Routes = [
       { path: 'edit/:id', component: SpecialtyEditComponent}
     ]  
   },
-  { path: 'pages/medic', component: MedicComponent }
+  { path: 'pages/medic', component: MedicComponent },
+  { path: 'pages/consult', component: ConsultComponent }
+
 ];
 
 @NgModule({

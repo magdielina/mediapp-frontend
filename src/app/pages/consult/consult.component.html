@@ -1,0 +1,28 @@
+<mat-toolbar>Consult Register1</mat-toolbar>
+
+<div class="example-container">
+    <mat-form-field>
+        <mat-select placeholder="Select Patient" [(ngModel)]="patientIdSelected">
+           <mat-option *ngFor="let p of patients$ | async" [value]="p.patientId">
+                {{p.firstName}} {{p.lastName}}
+           </mat-option>     
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Select Medic" [(ngModel)]="medicIdSelected">
+           <mat-option *ngFor="let m of medics$ | async" [value]="m.medicId">
+                {{m.firstName}} {{m.lastName}}
+           </mat-option>     
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Select Specialty" [(ngModel)]="specialtyIdSelected">
+           <mat-option *ngFor="let s of specialties$ | async" [value]="s.specialtyId">
+                {{s.name}}
+           </mat-option>     
+        </mat-select>
+    </mat-form-field>
+
+</div>
