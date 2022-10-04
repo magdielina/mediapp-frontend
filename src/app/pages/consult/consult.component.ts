@@ -23,7 +23,8 @@ export class ConsultComponent implements OnInit {
   patientIdSelected: number;
   medicIdSelected: number;
   specialtyIdSelected: number;
-  
+  maxDate: Date = new Date();
+  dateSelected: Date;
 
   constructor(
     private patientService: PatientService,
