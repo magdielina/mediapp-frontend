@@ -27,9 +27,7 @@ export class PatientComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientService.getPatientChange().subscribe(data => {
-      this.dataSource = new  MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.createTable(data);
     });
 
     this.patientService.getMessageChange().subscribe(data => {
@@ -37,10 +35,14 @@ export class PatientComponent implements OnInit {
     })
 
     this.patientService.findAll().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.createTable(data);
     });
+  }
+
+  createTable(patients: Patient[]){
+    this.dataSource = new MatTableDataSource(patients);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(e: any ) {

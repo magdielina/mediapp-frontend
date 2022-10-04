@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { switchMap } from 'rxjs';
@@ -22,10 +23,26 @@ export class MedicComponent implements OnInit {
 
   constructor(
     private medicService: MedicService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar 
   ) { }
 
   ngOnInit(): void {
+    this.medicService.getMedicChange().subscribe((data) => {
+      this.createTable(data);
+    })
+
+    this.medicService.getMessageChange().subscribe(data => {
+      this.snackBar.open(
+        'Info', 
+        data, 
+        {duration: 2000, 
+          horizontalPosition: 'right',
+          verticalPosition: 'top'
+        });
+    })
+
+    
     this.medicService.findAll().subscribe((data) => {
       this.createTable(data);
     });
@@ -42,7 +59,8 @@ export class MedicComponent implements OnInit {
   openDialog(medic?: Medic){
     this.dialog.open(MedicDialogComponent, {
       width: '250px',
-      data: medic
+      data: medic,
+      disableClose: true
     });
   }
 
