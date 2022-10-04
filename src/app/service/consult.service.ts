@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ConsultListExamDTO } from '../dto/consultListExamDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ConsultService {
     private http: HttpClient
   ) { }
 
-  saveTransaction(){
-    
+  saveTransaction(consultListExam: ConsultListExamDTO){
+    return this.http.post(this.url, consultListExam);
   }
 }

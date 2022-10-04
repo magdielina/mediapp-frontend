@@ -33,4 +33,50 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
+    <mat-form-field>
+        <input matInput placeholder="Diagnosis" [(ngModel)]="diagnosis">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Diagnosis" [(ngModel)]="treatment">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="addDetail()">Add Detail</button>
+
+    <mat-expansion-panel *ngFor="let det of details; let i=index">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{i +1 }}.- {{det.diagnosis}}
+            </mat-panel-title>
+            <mat-panel-description>
+                View treatment
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+            <textarea matInput placeholder="Treatment" value="{{det.treatment}}"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="warn" (click)="removeDetail(i)">Remove</button>
+
+    </mat-expansion-panel>
+
+    <mat-form-field>
+        <mat-select placeholder="Select Exam" [(ngModel)]="examSelected">
+           <mat-option *ngFor="let e of exams$ | async" [value]="e">
+                {{e.name}}
+           </mat-option>     
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="addExam()">Add Exam</button>
+
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let ex of examsSelected; let i = index">
+            {{i + 1}}.- {{ex.name}}
+        </mat-list-item>
+    </mat-list>
+
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+
 </div>
