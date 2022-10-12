@@ -1,0 +1,113 @@
+<mat-slide-toggle (toggleChange)="isLinear = !isLinear">
+    {{isLinear ? 'Lineal mode active' : 'Lineal mode inactive'}}
+</mat-slide-toggle>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Principal</ng-template>
+
+        <form [formGroup]="firstFormGroup">
+            <mat-form-field>
+                <mat-select placeholder="Select Patient" formControlName="patient">
+                   <mat-option *ngFor="let p of patients" [value]="p">
+                        {{p.firstName}} {{p.lastName}}
+                   </mat-option>     
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Select Specialty" formControlName="specialty">
+                   <mat-option *ngFor="let s of specialties" [value]="s">
+                        {{s.name}}
+                   </mat-option>     
+                </mat-select>
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+                <mat-label>Select a date</mat-label>
+                <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="consultDate">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Diagnosis" formControlName="diagnosis">
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input matInput placeholder="Treatment" formControlName="treatment">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="addDetail()">Add Detail</button>
+
+            <mat-expansion-panel *ngFor="let det of details; let i=index">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{ i +1 }}.- {{det.diagnosis}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        View treatment
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+        
+                <mat-form-field>
+                    <textarea matInput placeholder="Treatment" value="{{det.treatment}}"></textarea>
+                </mat-form-field>
+        
+                <button mat-raised-button color="warn" (click)="removeDetail(i)">Remove</button>
+            </mat-expansion-panel>
+
+            <mat-form-field>
+                <mat-select placeholder="Select Exam" formControlName="exam">
+                   <mat-option *ngFor="let e of exams" [value]="e">
+                        {{e.name}}
+                   </mat-option>     
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="addExam()">Add Exam</button>
+
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let ex of examsSelected; let i = index">
+                    {{i + 1}}.- {{ex.name}}
+                </mat-list-item>
+            </mat-list>
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%">
+                <mat-card *ngFor="let m of medics" class="example-card">
+                    <mat-card-header>
+                        <img mat-card-avatar [src]="m.photoUrl" alt="Medic's Avatar">
+                        <mat-card-title>
+                            {{m.firstName}} {{m.lastName}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            {{m.cmp}}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="m.photoUrl" alt="Medic's Photo" style="cursor: pointer" width="200" height="200">
+                    <mat-card-content>
+                        <p>Content about {{m.firstName}} {{m.lastName}}</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary" type="button">Select</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Consult</ng-template>
+        <form [formGroup]="secondFormGroup">
+
+        </form>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Confirm</ng-template>
+
+    </mat-step>
+</mat-horizontal-stepper>

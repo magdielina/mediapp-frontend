@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consult-autocomplete.component';
+import { ConsultWizardComponent } from './pages/consult-wizard/consult-wizard.component';
 import { ConsultComponent } from './pages/consult/consult.component';
 import { ExamEditComponent } from './pages/exam/exam-edit/exam-edit.component';
 import { ExamComponent } from './pages/exam/exam.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
   },
   { path: 'pages/medic', component: MedicComponent },
   { path: 'pages/consult', component: ConsultComponent },
-  { path: 'pages/consult-autocomplete', component: ConsultAutocompleteComponent }
+  { path: 'pages/consult-autocomplete', component: ConsultAutocompleteComponent },
+  { path: 'pages/consult-wizard', component: ConsultWizardComponent }
 
 ];
 

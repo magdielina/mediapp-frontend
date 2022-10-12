@@ -17,6 +17,8 @@ import { ExamEditComponent } from './pages/exam/exam-edit/exam-edit.component';
 import { SpecialtyEditComponent } from './pages/specialty/specialty-edit/specialty-edit.component';
 import { ConsultComponent } from './pages/consult/consult.component';
 import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consult-autocomplete.component';
+import { ConsultWizardComponent } from './pages/consult-wizard/consult-wizard.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consu
     ExamEditComponent,
     SpecialtyEditComponent,
     ConsultComponent,
-    ConsultAutocompleteComponent
+    ConsultAutocompleteComponent,
+    ConsultWizardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consu
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
