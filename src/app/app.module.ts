@@ -19,6 +19,7 @@ import { ConsultComponent } from './pages/consult/consult.component';
 import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consult-autocomplete.component';
 import { ConsultWizardComponent } from './pages/consult-wizard/consult-wizard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SpecialtyEditComponent,
     ConsultComponent,
     ConsultAutocompleteComponent,
-    ConsultWizardComponent
+    ConsultWizardComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
