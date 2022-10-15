@@ -20,6 +20,7 @@ import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consu
 import { ConsultWizardComponent } from './pages/consult-wizard/consult-wizard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchComponent } from './pages/search/search.component';
+import { SearchDialogComponent } from './pages/search/search-dialog/search-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchComponent } from './pages/search/search.component';
     ConsultComponent,
     ConsultAutocompleteComponent,
     ConsultWizardComponent,
-    SearchComponent
+    SearchComponent,
+    SearchDialogComponent
   ],
   imports: [
     BrowserModule,
