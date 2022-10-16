@@ -8,6 +8,7 @@ import { ExamComponent } from './pages/exam/exam.component';
 import { MedicComponent } from './pages/medic/medic.component';
 import { PatientEditComponent } from './pages/patient/patient-edit/patient-edit.component';
 import { PatientComponent } from './pages/patient/patient.component';
+import { ReportComponent } from './pages/report/report.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SpecialtyEditComponent } from './pages/specialty/specialty-edit/specialty-edit.component';
 import { SpecialtyComponent } from './pages/specialty/specialty.component';
@@ -35,7 +36,9 @@ const routes: Routes = [
   { path: 'pages/consult', component: ConsultComponent },
   { path: 'pages/consult-autocomplete', component: ConsultAutocompleteComponent },
   { path: 'pages/consult-wizard', component: ConsultWizardComponent },
-  { path: 'pages/search', component: SearchComponent }
+  { path: 'pages/search', component: SearchComponent },
+  { path: 'pages/report', component: ReportComponent }
+
 
 ];
 

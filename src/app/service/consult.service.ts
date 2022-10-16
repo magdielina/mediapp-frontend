@@ -39,6 +39,10 @@ export class ConsultService {
     // return this.http.get<ConsultListExamDTO[]>(`${environment.HOST}/consultexams/${consultId}`);
     return this.http.get<any[]>(`${environment.HOST}/consultexams/${consultId}`);
   }
+
+  callProcedureOrFunction(){
+    return this.http.get<any[]>(`${this.url}/callProcedure`);
+  }
   
 }
 

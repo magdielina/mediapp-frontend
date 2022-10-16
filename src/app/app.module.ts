@@ -21,6 +21,7 @@ import { ConsultWizardComponent } from './pages/consult-wizard/consult-wizard.co
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchDialogComponent } from './pages/search/search-dialog/search-dialog.component';
+import { ReportComponent } from './pages/report/report.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SearchDialogComponent } from './pages/search/search-dialog/search-dialo
     ConsultAutocompleteComponent,
     ConsultWizardComponent,
     SearchComponent,
-    SearchDialogComponent
+    SearchDialogComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
