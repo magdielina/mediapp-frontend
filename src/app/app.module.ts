@@ -22,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchDialogComponent } from './pages/search/search-dialog/search-dialog.component';
 import { ReportComponent } from './pages/report/report.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ReportComponent } from './pages/report/report.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    PdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

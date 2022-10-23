@@ -13,3 +13,5 @@
 
 <button mat-button color="primary" (click)="viewReport()">View PDF</button>
 <button mat-button color="primary" (click)="downloadReport()">Download PDF</button>
+
+<pdf-viewer *ngIf="pdfSrc" [src]="pdfSrc" [render-text]="true" style="width: 800px; height: 800px"></pdf-viewer>

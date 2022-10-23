@@ -17,6 +17,8 @@ export class ReportComponent implements OnInit {
   pieType: ChartType = "pie"
   chart: Chart;
 
+  pdfSrc: string;
+
   constructor(
     private consultService: ConsultService
   ) { }
@@ -91,7 +93,9 @@ export class ReportComponent implements OnInit {
   }
 
   viewReport(){
-
+    this.consultService.generateReport().subscribe(data => {
+      this.pdfSrc = window.URL.createObjectURL(data);
+    });
   }
 
   downloadReport(){
