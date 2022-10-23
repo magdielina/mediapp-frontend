@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultService } from 'src/app/service/consult.service';
-import { Chart } from 'chart.js';
 import { ChartType } from 'chart.js';
+import Chart from 'chart.js/auto'; //https://stackoverflow.com/questions/67727603/error-category-is-not-a-registered-scale
 
 @Component({
   selector: 'app-report',
@@ -10,7 +10,11 @@ import { ChartType } from 'chart.js';
 })
 export class ReportComponent implements OnInit {
 
-  type: string = "line"
+  type: ChartType = "line"
+  barType: ChartType = "bar"
+  doughnutType: ChartType = "doughnut"
+  radarType: ChartType = "radar"
+  pieType: ChartType = "pie"
   chart: Chart;
 
   constructor(
@@ -21,7 +25,7 @@ export class ReportComponent implements OnInit {
     this.draw();
   }
 
-  draw(){
+  draw() {
     this.consultService.callProcedureOrFunction().subscribe(data => {
       let dates = data.map(x => x.consultDate);
       let quantities = data.map(x => x.quantity);
@@ -43,36 +47,62 @@ export class ReportComponent implements OnInit {
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 0, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
-              ]
+              ],
+              borderWidth: 1
             }
           ]
         },
         options: {
-          legend: {
-            display: true
-          },
           scales: {
-            xAxes: [{
+            x: {
               display: true
-            }],
-            yAxes: [{
+            },
+            y: {
               display: true,
-              ticks: {
-                beginAtZero: true
-              }
-            }],
+              beginAtZero: true
+            },
           }
         }
       });
     });
   }
-  
-  change(type: string){
-    this.type = type;
-    if(this.chart != null){
+
+  change(type: string) {
+    switch (type) {
+      case 'bar':
+        this.type = this.barType;
+        break;
+      case 'doughnut':
+        this.type = this.doughnutType;
+        break;
+      case 'radar':
+        this.type = this.radarType;
+        break;
+      case 'pie':
+        this.type = this.pieType;
+        break;
+      default:
+        break;
+    }
+    if (this.chart != null) {
       this.chart.destroy();
     }
     this.draw();
   }
 
+  viewReport(){
+
+  }
+
+  downloadReport(){
+    this.consultService.generateReport().subscribe(data => {
+      const url = window.URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.setAttribute('style', 'display:none');
+      document.body.appendChild(a);
+      a.href = url;
+      a.download = 'Consults_Report.pdf'
+      a.click();
+    });
+  }
 }

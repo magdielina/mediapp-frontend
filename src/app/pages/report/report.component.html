@@ -9,3 +9,7 @@
 <div [hidden]="!chart">
     <canvas id="canvas">{{chart}}</canvas>
 </div>
+
+
+<button mat-button color="primary" (click)="viewReport()">View PDF</button>
+<button mat-button color="primary" (click)="downloadReport()">Download PDF</button>
