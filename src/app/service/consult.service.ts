@@ -48,6 +48,13 @@ export class ConsultService {
   generateReport(){
     return this.http.get(`${this.url}/generatereport`, {responseType: 'blob'});
   }
+
+  //Image
+  saveFile(data: File){
+    let formData: FormData = new FormData();
+    formData.append('file', data);
+    return this.http.post(`${this.url}/saveFile`, formData)
+  }
   
 }
 

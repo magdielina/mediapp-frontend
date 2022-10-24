@@ -19,6 +19,10 @@ export class ReportComponent implements OnInit {
 
   pdfSrc: string;
 
+  fileName: string;
+  selectedFiles: FileList;
+  imageData: any;
+
   constructor(
     private consultService: ConsultService
   ) { }
@@ -108,5 +112,17 @@ export class ReportComponent implements OnInit {
       a.download = 'Consults_Report.pdf'
       a.click();
     });
+  }
+
+  selectFile(e: any){    
+    this.fileName = e.target.files[0]?.name;
+    this.selectedFiles = e.target.files;
+  }
+
+  upload(){
+    if(this.selectedFiles.item(0) != null){
+      this.consultService.saveFile(this.selectedFiles.item(0)).subscribe();
+    }
+
   }
 }
