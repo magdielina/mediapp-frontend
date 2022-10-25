@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { ConsultListExamDTO } from '../dto/consultListExamDTO';
 import { FilterConsultDTO } from '../dto/filterConsultDTO';
 import { Consult } from '../model/consult';
+import { Medic } from '../model/medic';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,19 @@ export class ConsultService {
   saveFile(data: File){
     let formData: FormData = new FormData();
     formData.append('file', data);
-    return this.http.post(`${this.url}/saveFile`, formData)
+
+    //Ex
+    // let medic = new Medic();
+    // medic.firstName = "Mito";
+    // const medicBlob = new Blob([JSON.stringify(medic)], {type: "application/json"})
+    // formData.append('medic', medicBlob);
+
+    return this.http.post(`${this.url}/saveFile`, formData);
+  }
+
+  readFile(id: number){
+    return this.http.get(`${this.url}/readFile/${id}`, {responseType: 'blob'});
+
   }
   
 }

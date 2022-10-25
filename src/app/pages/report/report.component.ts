@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConsultService } from 'src/app/service/consult.service';
 import { ChartType } from 'chart.js';
 import Chart from 'chart.js/auto'; //https://stackoverflow.com/questions/67727603/error-category-is-not-a-registered-scale
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-report',
@@ -24,11 +25,29 @@ export class ReportComponent implements OnInit {
   imageData: any;
 
   constructor(
-    private consultService: ConsultService
+    private consultService: ConsultService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
     this.draw();
+    this.consultService.readFile(1).subscribe(data => {
+      this.convert(data);
+    });
+  }
+
+  convert(data: any){
+    let reader = new FileReader();
+    reader.readAsDataURL(data);
+    reader.onloadend = () => {
+      let base64 = reader.result;
+      // this.imageData = base64;
+      this.applySanitizer(base64);
+    }
+  }
+
+  applySanitizer(base64: any){
+    this.imageData = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
   }
 
   draw() {
@@ -125,4 +144,6 @@ export class ReportComponent implements OnInit {
     }
 
   }
+
+
 }
