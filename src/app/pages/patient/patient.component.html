@@ -54,7 +54,7 @@
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
     </table> 
-    <mat-paginator [pageSizeOptions]="[5,10,25,50,100]" aria-label="Select page of patients"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5,10,25,50,100]" (page)="showMore($event)" [length]="totalElements"  aria-label="Select page of patients"></mat-paginator>
 
     <button mat-fab color="accent" style="float: right" routerLink="new" >
       <mat-icon>add</mat-icon>

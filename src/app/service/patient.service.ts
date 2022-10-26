@@ -57,4 +57,8 @@ export class PatientService extends GenericService<Patient>{
   getMessageChange(){
     return this.messageChange.asObservable();
   }
+
+  listPageable(p: number, s: number){
+    return this.http.get<any>(`${this.url}/pageable?page=${p}&size=${s}`);
+  }
 }
