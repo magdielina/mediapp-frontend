@@ -5,6 +5,7 @@ import { ConsultWizardComponent } from './pages/consult-wizard/consult-wizard.co
 import { ConsultComponent } from './pages/consult/consult.component';
 import { ExamEditComponent } from './pages/exam/exam-edit/exam-edit.component';
 import { ExamComponent } from './pages/exam/exam.component';
+import { LoginComponent } from './pages/login/login.component';
 import { MedicComponent } from './pages/medic/medic.component';
 import { PatientEditComponent } from './pages/patient/patient-edit/patient-edit.component';
 import { PatientComponent } from './pages/patient/patient.component';
@@ -37,9 +38,9 @@ const routes: Routes = [
   { path: 'pages/consult-autocomplete', component: ConsultAutocompleteComponent },
   { path: 'pages/consult-wizard', component: ConsultWizardComponent },
   { path: 'pages/search', component: SearchComponent },
-  { path: 'pages/report', component: ReportComponent }
-
-
+  { path: 'pages/report', component: ReportComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 @NgModule({

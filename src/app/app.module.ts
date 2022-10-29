@@ -23,6 +23,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { SearchDialogComponent } from './pages/search/search-dialog/search-dialog.component';
 import { ReportComponent } from './pages/report/report.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     ConsultWizardComponent,
     SearchComponent,
     SearchDialogComponent,
-    ReportComponent
+    ReportComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
