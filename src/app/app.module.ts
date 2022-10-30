@@ -4,56 +4,39 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PatientComponent } from './pages/patient/patient.component';
-import { MedicComponent } from './pages/medic/medic.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './material/material.module';
-import { PatientEditComponent } from './pages/patient/patient-edit/patient-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MedicDialogComponent } from './pages/medic/medic-dialog/medic-dialog.component';
-import { SpecialtyComponent } from './pages/specialty/specialty.component';
-import { ExamComponent } from './pages/exam/exam.component';
-import { ExamEditComponent } from './pages/exam/exam-edit/exam-edit.component';
-import { SpecialtyEditComponent } from './pages/specialty/specialty-edit/specialty-edit.component';
-import { ConsultComponent } from './pages/consult/consult.component';
-import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consult-autocomplete.component';
-import { ConsultWizardComponent } from './pages/consult-wizard/consult-wizard.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SearchComponent } from './pages/search/search.component';
-import { SearchDialogComponent } from './pages/search/search-dialog/search-dialog.component';
-import { ReportComponent } from './pages/report/report.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { LoginComponent } from './pages/login/login.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PatientComponent,
-    MedicComponent,
-    PatientEditComponent,
-    MedicDialogComponent,
-    SpecialtyComponent,
-    ExamComponent,
-    ExamEditComponent,
-    SpecialtyEditComponent,
-    ConsultComponent,
-    ConsultAutocompleteComponent,
-    ConsultWizardComponent,
-    SearchComponent,
-    SearchDialogComponent,
-    ReportComponent,
     LoginComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,    
     FormsModule,
-    FlexLayoutModule,
-    PdfViewerModule
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
