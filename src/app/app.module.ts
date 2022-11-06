@@ -16,6 +16,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { environment } from 'src/environments/environment';
+
+import { JwtModule } from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+  return sessionStorage.getItem(environment.TOKEN_NAME);
+}
 
 @NgModule({
   declarations: [
@@ -36,7 +43,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDividerModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:8080"],
+        disallowedRoutes: ["http://localhost:8080/login/forget"],
+      },
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

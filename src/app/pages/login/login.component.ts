@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login.service';
+import { environment } from 'src/environments/environment';
 import '../../../assets/login-animation.js';
 
 @Component({
@@ -13,13 +16,20 @@ export class LoginComponent implements OnInit {
   message: string;
   error: string;
 
-  constructor() { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   login(){
-
+    this.loginService.login(this.username, this.password).subscribe(data => {
+      console.log(data.access_token);
+      sessionStorage.setItem(environment.TOKEN_NAME, data.access_token);
+      this.router.navigate(['/pages/dashboard']);
+    });
   }
 
   ngAfterViewInit() {

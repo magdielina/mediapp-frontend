@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConsultAutocompleteComponent } from './consult-autocomplete/consult-autocomplete.component';
 import { ConsultWizardComponent } from './consult-wizard/consult-wizard.component';
 import { ConsultComponent } from './consult/consult.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExamEditComponent } from './exam/exam-edit/exam-edit.component';
 import { ExamComponent } from './exam/exam.component';
 import { MedicComponent } from './medic/medic.component';
@@ -14,6 +15,7 @@ import { SpecialtyEditComponent } from './specialty/specialty-edit/specialty-edi
 import { SpecialtyComponent } from './specialty/specialty.component';
 
 export const routes: Routes = [
+    {path: 'dashboard', component: DashboardComponent},
     { 
         path: 'patient', component: PatientComponent, children: [
           { path: 'new', component: PatientEditComponent},

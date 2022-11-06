@@ -22,6 +22,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     imports: [
@@ -50,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
         SearchComponent,
         SearchDialogComponent,
         ReportComponent,
-        LayoutComponent
+        LayoutComponent,
+        DashboardComponent
     ],
     providers: [],
 })
