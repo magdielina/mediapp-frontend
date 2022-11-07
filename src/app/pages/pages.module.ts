@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { Not403Component } from './not403/not403.component';
+import { Not404Component } from './not404/not404.component';
 
 @NgModule({
     imports: [
@@ -52,7 +54,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         SearchDialogComponent,
         ReportComponent,
         LayoutComponent,
-        DashboardComponent
+        DashboardComponent,
+        Not403Component,
+        Not404Component
     ],
     providers: [],
 })

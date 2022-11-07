@@ -23,19 +23,19 @@ export class LoginService {
     });
   }
 
-  // isLogged(){
-  //   let token = sessionStorage.getItem(environment.TOKEN_NAME);
-  //   return token != null;
-  // }
+  isLogged(){
+    let token = sessionStorage.getItem(environment.TOKEN_NAME);
+    return token != null;
+  }
 
-  // logout(){
-  //   /*sessionStorage.clear();
-  //   this.router.navigate(['login']);*/
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['login']);
 
-  //   let token = sessionStorage.getItem(environment.TOKEN_NAME);
-  //   this.http.get(`${environment.HOST}/tokens/anulate/${token}`).subscribe(() => {
-  //     sessionStorage.clear();
-  //     this.router.navigate(['login']);
-  //   });
-  // }
+    // let token = sessionStorage.getItem(environment.TOKEN_NAME);
+    // this.http.get(`${environment.HOST}/tokens/anulate/${token}`).subscribe(() => {
+    //   sessionStorage.clear();
+    //   this.router.navigate(['login']);
+    // });
+  }
 }
