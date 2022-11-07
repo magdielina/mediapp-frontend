@@ -29,13 +29,13 @@ export class LoginService {
   }
 
   logout(){
-    sessionStorage.clear();
-    this.router.navigate(['login']);
+    // sessionStorage.clear();
+    // this.router.navigate(['login']);
 
-    // let token = sessionStorage.getItem(environment.TOKEN_NAME);
-    // this.http.get(`${environment.HOST}/tokens/anulate/${token}`).subscribe(() => {
-    //   sessionStorage.clear();
-    //   this.router.navigate(['login']);
-    // });
+    let token = sessionStorage.getItem(environment.TOKEN_NAME);
+    this.http.get(`${environment.HOST}/tokens/anulate/${token}`).subscribe(() => {
+      sessionStorage.clear();
+      this.router.navigate(['login']);
+    });
   }
 }
