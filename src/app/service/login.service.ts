@@ -29,13 +29,30 @@ export class LoginService {
   }
 
   logout(){
-    // sessionStorage.clear();
-    // this.router.navigate(['login']);
+    /*sessionStorage.clear();
+    this.router.navigate(['login']);*/
 
     let token = sessionStorage.getItem(environment.TOKEN_NAME);
     this.http.get(`${environment.HOST}/tokens/anulate/${token}`).subscribe(() => {
       sessionStorage.clear();
       this.router.navigate(['login']);
+    });
+  }
+
+  ///send mail from backend
+  sendMail(username: string) {
+    return this.http.post<number>(`${environment.HOST}/login/sendMail`, username, {
+      headers: new HttpHeaders().set('Content-Type', 'text/plain')
+    });
+  }
+
+  checkTokenReset(token: string) {
+    return this.http.get<number>(`${environment.HOST}/login/reset/check/${token}`);
+  }
+
+  reset(token: string, clave: string) {
+    return this.http.post(`${environment.HOST}/login/reset/${token}`, clave, {
+      headers: new HttpHeaders().set('Content-Type', 'text/plain')
     });
   }
 }

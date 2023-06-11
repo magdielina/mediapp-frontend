@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +19,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { environment } from 'src/environments/environment';
 
 import { JwtModule } from "@auth0/angular-jwt";
+import { ServerErrorsInterceptor } from './shared/server-errors.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ForgotComponent } from './pages/login/forgot/forgot.component';
+import { TokenComponent } from './pages/login/forgot/token/token.component';
+import { MatInputModule } from '@angular/material/input';
 
 export function tokenGetter() {
   return sessionStorage.getItem(environment.TOKEN_NAME);
@@ -27,8 +32,9 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
-    
+    LoginComponent,
+    ForgotComponent,
+    TokenComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,9 @@ export function tokenGetter() {
     MatDividerModule,
     MatToolbarModule,
     MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
+    MatSnackBarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -52,7 +60,14 @@ export function tokenGetter() {
       },
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorsInterceptor,
+      multi: true
+    },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

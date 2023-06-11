@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { ForgotComponent } from './pages/login/forgot/forgot.component';
+import { TokenComponent } from './pages/login/forgot/token/token.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Not404Component } from './pages/not404/not404.component';
 
@@ -8,6 +10,11 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full'},
+  {
+    path: 'forgot', component: ForgotComponent, children: [
+      { path: ':token', component: TokenComponent }
+    ]
+  },
   {
     path: 'pages',
     component: LayoutComponent,
