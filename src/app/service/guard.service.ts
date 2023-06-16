@@ -19,7 +19,7 @@ export class GuardService implements CanActivate{
     private router: Router,
     ) { }
   
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  /*canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     //1) VERIFY USER IS LOGGED
     let logged = this.loginService.isLogged();
     let logout = false;
@@ -59,5 +59,47 @@ export class GuardService implements CanActivate{
       return false;
     }
     return true;
+  }*/
+
+  //keycloak
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    //1) VERIFICAR SI ESTA LOGUEADO
+    let rpta = this.loginService.isLogged();
+    if (!rpta) {
+      this.loginService.logout();
+      return false;
+    } else {
+      //2) VERIFICAR SI EL TOKEN NO HA EXPIRADO      
+      const helper = new JwtHelperService();
+      let token = sessionStorage.getItem(environment.TOKEN_NAME);
+      if (!helper.isTokenExpired(token)) {
+        //3) VERIFICAR SI TIENES EL ROL NECESARIO PARA ACCEDER A ESA PAGINA  
+        //url -> /pages/consulta
+        let url = state.url;
+        const decodedToken = helper.decodeToken(token);
+        //console.log(decodedToken.preferred_username);
+        return this.menuService.getMenusByUser(decodedToken.preferred_username).pipe(map((data: Menu[]) => {
+          this.menuService.setMenuChange(data);  
+          
+          let cont = 0;
+          for (let m of data) {
+            if (url.startsWith(m.url)) {
+              cont++;
+              break;
+            }
+          }
+
+          if (cont > 0) {
+            return true;
+          } else {
+            this.router.navigate(['pages/not-403']);
+            return false;
+          }
+        }));
+      } else {
+        this.loginService.logout();
+        return false;
+      }
+    }
   }
 }

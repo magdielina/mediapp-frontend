@@ -8,21 +8,38 @@ import { environment } from 'src/environments/environment';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+  
 export class DashboardComponent implements OnInit {
 
-  username: string;
+    username: string;
   
-  constructor(
-    private menuService: MenuService) { }
-
-  ngOnInit(): void {
-    const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(sessionStorage.getItem(environment.TOKEN_NAME));
-    this.username = decodedToken.user_name;
-    
-    this.menuService.getMenusByUser(this.username).subscribe(data => {
-      this.menuService.setMenuChange(data);
-    });
+    constructor(
+      private menuService: MenuService
+    ) { }
+  
+    /*ngOnInit(): void {    
+      const helper = new JwtHelperService();  
+      const decodedToken = helper.decodeToken(sessionStorage.getItem(environment.TOKEN_NAME));    
+      this.username = decodedToken.user_name;
+  
+      this.menuService.getMenusByUser(this.username).subscribe(data => {
+        this.menuService.setMenuChange(data);
+      });
+    }*/
+  
+    ngOnInit(): void {
+      const helper = new JwtHelperService();
+      let token = sessionStorage.getItem(environment.TOKEN_NAME);
+  
+      const decodedToken = helper.decodeToken(token);
+      //Spring OAUTH2
+      //this.usuario = decodedToken.user_name;
+  
+      //Keycloak
+      this.username = decodedToken.preferred_username;
+      this.menuService.getMenusByUser(this.username).subscribe(data => {
+        this.menuService.setMenuChange(data);
+      });
+    }
+  
   }
-
-}

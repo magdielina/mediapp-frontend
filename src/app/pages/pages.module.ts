@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Not403Component } from './not403/not403.component';
 import { Not404Component } from './not404/not404.component';
+import { NewUserComponent } from './login/new-user/new-user.component';
 
 @NgModule({
     imports: [
@@ -56,7 +57,8 @@ import { Not404Component } from './not404/not404.component';
         LayoutComponent,
         DashboardComponent,
         Not403Component,
-        Not404Component
+        Not404Component,
+        NewUserComponent
     ],
     providers: [],
 })

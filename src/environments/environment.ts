@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  UAA_HOST: 'http://localhost:9898', //keycloak
   HOST: 'http://localhost:8080',
   TOKEN_AUTH_USERNAME: 'mitomediapp',
   TOKEN_AUTH_PASSWORD: 'mito89codex',
